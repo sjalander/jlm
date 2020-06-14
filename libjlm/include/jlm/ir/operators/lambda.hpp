@@ -409,6 +409,17 @@ is_lambda_cv(const jive::output * output)
 	    && argument->input() != nullptr;
 }
 
+static inline bool
+is_exported(const lambda_node & lambda)
+{
+	for (auto & user : *lambda.output(0)) {
+		if (dynamic_cast<const jive::expport*>(&user->port()))
+			return true;
+	}
+
+	return false;
+}
+
 }
 
 #endif
