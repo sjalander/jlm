@@ -21,6 +21,9 @@ public:
 	virtual
 	~dne();
 
+	void
+	run(jive::region & region);
+
 	virtual void
 	run(rvsdg_module & module, const stats_descriptor & sd) override;
 };

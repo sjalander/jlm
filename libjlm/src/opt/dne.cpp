@@ -392,10 +392,10 @@ sweep(jive::region * region, const dnectx & ctx)
 }
 
 static void
-mark(const jive::graph & graph, dnectx & ctx)
+mark(const jive::region & region, dnectx & ctx)
 {
-	for (size_t n = 0; n < graph.root()->nresults(); n++)
-		mark(graph.root()->result(n)->origin(), ctx);
+	for (size_t n = 0; n < region.nresults(); n++)
+		mark(region.result(n)->origin(), ctx);
 }
 
 static void
@@ -417,7 +417,7 @@ dne(rvsdg_module & rm, const stats_descriptor & sd)
 	dnestat ds;
 
 	ds.start_mark_stat(graph);
-	mark(graph, ctx);
+	mark(*graph.root(), ctx);
 	ds.end_mark_stat();
 
 	ds.start_sweep_stat();
@@ -432,6 +432,14 @@ dne(rvsdg_module & rm, const stats_descriptor & sd)
 
 dne::~dne()
 {}
+
+void
+dne::run(jive::region & region)
+{
+	dnectx ctx;
+	mark(region, ctx);
+	sweep(&region, ctx);
+}
 
 void
 dne::run(rvsdg_module & module, const stats_descriptor & sd)
