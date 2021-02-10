@@ -480,7 +480,7 @@ convert_branch_node(
 		JLM_ASSERT(svmap.vmap().find(v) != svmap.vmap().end());
 		evmap[v] = gamma->add_entryvar(svmap.vmap()[v]);
 	}
-
+	
 	/* convert branch cases */
 	std::unordered_map<const variable*, std::vector<jive::output*>> xvmap;
 	JLM_ASSERT(gamma->nsubregions() == node.nchildren());
@@ -624,7 +624,12 @@ convert_cfg(
 		aggregation_stat stat(source_filename, function.name());
 		stat.start(*cfg);
 		root = aggregate(*cfg);
+//		std::cout << function.name() << " " << root->nnodes() << "\n";
+//		jlm::print(*root, stdout);
 		aggnode::normalize(*root);
+//		std::cout << function.name() << " " << root->nnodes() << "\n";
+//		jlm::print(*root, stdout);
+
 		stat.end();
 		if (sd.print_aggregation_time)
 			sd.print_stat(stat);
@@ -634,7 +639,9 @@ convert_cfg(
 	{
 		annotation_stat stat(source_filename, function.name());
 		stat.start(*root);
+//		std::cout << "ANNOTATION " << function.name() << "\n";
 		dm = annotate(*root);
+//		jlm::print(*root, dm, stdout);
 		stat.end();
 		if (sd.print_annotation_time)
 			sd.print_stat(stat);
@@ -646,6 +653,7 @@ convert_cfg(
 	auto & attributes = function.attributes();
 	auto lambda = lambda::node::create(svmap.region(), fcttype, name, linkage, attributes);
 
+//	std::cout << "CONVERSION " << function.name() << "\n";
 	convert_node(*root, dm, function, lambda, svmap);
 
 	return lambda->output();
