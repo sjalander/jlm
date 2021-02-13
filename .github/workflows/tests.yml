@@ -23,8 +23,9 @@ jobs:
       run: make check
       env:
         LLVMCONFIG: llvm-config-10  
-    - uses: phate/polybench-jlm@v2
-    - name: Polybench
-      run: make compare
+    - name: Clone polybench
+      run: git clone git@github.com:phate/polybench-jlm.git
+    - name: Compare polybench
+      run: make -C polybench-jlm compare
       env:
         PATH: /home/runner/work/jlm/jlm/bin
