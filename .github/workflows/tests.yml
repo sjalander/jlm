@@ -23,7 +23,7 @@ jobs:
       run: make check
       env:
         LLVMCONFIG: llvm-config-10  
-    - uses: phate/polybench-jlm
+    - uses: phate/polybench-jlm@v2
     - name: Polybench
       run: make compare
       env:
