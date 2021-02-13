@@ -22,4 +22,9 @@ jobs:
     - name: Run unit and C tests
       run: make check
       env:
-        LLVMCONFIG: llvm-config-10
+        LLVMCONFIG: llvm-config-10  
+    - uses: phate/polybench-jlm@v1
+    - name: Polybench
+      run: make compare
+      env:
+        PATH: /home/runner/work/jlm/jlm/bin
