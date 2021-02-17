@@ -33,3 +33,5 @@ jobs:
       run: git clone https://github.com/phate/polybench-jlm.git
     - name: Compare polybench
       run: make -C polybench-jlm compare
+      env:
+        LLVMCONFIG: llvm-config-10
