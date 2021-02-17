@@ -41,6 +41,8 @@ jobs:
 #        key: ${{ runner.os }}-${{ github.sha }}-jlm-bin
     - name: Add jlc to PATH
       run: echo '${{ github.workspace }}/bin' >> $GITHUB_PATH
+    - name: path
+      run: echo $PATH
     - name: ls-workspace
       run: ls ${{ github.workspace }}
     - name: ls-bin
