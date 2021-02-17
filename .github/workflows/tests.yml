@@ -36,7 +36,7 @@ jobs:
     - name: Cache
       uses: actions/cache@v2.1.4
       with:
-        path: jlm
+        path: ${{ github.workspace }}/bin/*
         key: test
 #        key: ${{ runner.os }}-${{ github.sha }}-jlm-bin
     - name: Add jlc to PATH
