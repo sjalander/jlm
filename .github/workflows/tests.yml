@@ -15,8 +15,8 @@ jobs:
       id: cache-build
       uses: actions/cache@v2.1.4
       with:
-        path: jlm/bin
-        key: ${{ runner.os }}-jlm-bin
+        path: ${{ github.workspace }}
+        key: ${{ runner.os }}-${{ github.sha }}-jlm-bin
     - name: Install dependencies (LLVM)
       run: sudo apt-get install llvm-10-dev clang-10
     - name: Set LLVMCONFIG
@@ -36,7 +36,7 @@ jobs:
       uses: actions/cache@v2.1.4
       with:
         path: jlm
-        key: ${{ runner.os }}-jlm-bin
+        key: ${{ runner.os }}-${{ github.sha }}-jlm-bin
     - name: Add jlc to PATH
       run: echo '/home/runner/work/jlm/jlm/bin' >> $GITHUB_PATH
     - name: ls-bin
