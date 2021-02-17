@@ -37,14 +37,18 @@ jobs:
       with:
         path: jlm
         key: ${{ runner.os }}-jlm-build
-    - name: ls
-      run: ls /home/runner/work/jlm/jlm
+    - name: Add jlc to PATH
+      run: echo '/home/runner/work/jlm/jlm/bin' >> $GITHUB_PATH
+    - name: ls-bin
+      run: ls /home/runner/work/jlm/jlm/bin
+    - name: ls-jlc
+      run: ls /home/runner/work/jlm/jlm/bin/jlc
+    - name: which
+      run: jlc
     - name: Install dependencies (LLVM)
       run: sudo apt-get install llvm-10-dev clang-10
     - name: Set LLVMCONFIG
       run: echo "LLVMCONFIG=llvm-config-10" >> $GITHUB_ENV
-    - name: Add jlc to PATH
-      run: echo '/home/runner/work/jlm/jlm/bin' >> $GITHUB_PATH
     - name: Clone polybench
       run: git clone https://github.com/phate/polybench-jlm.git
     - name: Compare polybench
