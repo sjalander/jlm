@@ -24,9 +24,9 @@ jobs:
     - name: Initialize submodules
       run: make submodule
     - name: Compile jive and jlm
-      run: make jive-release jlm-release
+      run: make jive-release jlm-release -j 2
     - name: Run unit and C tests
-      run: make check
+      run: make check -j 2
      
   polybench:
     runs-on: ubuntu-latest
