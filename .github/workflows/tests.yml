@@ -36,8 +36,7 @@ jobs:
       uses: actions/cache@v2.1.4
       with:
         path: jlm
-        keys: ${{ runner.os }}-jlm-build
-        restore-keys: ${{ runner.os }}-jlm-build
+        key: ${{ runner.os }}-jlm-build
     - name: Install dependencies (LLVM)
       run: sudo apt-get install llvm-10-dev clang-10
     - name: Set LLVMCONFIG
