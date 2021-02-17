@@ -22,7 +22,7 @@ jobs:
     - name: Run unit and C tests
       run: make check
       env:
-        LLVMCONFIG: llvm-config-10  
+        LLVMCONFIG: llvm-config-10
     - name: Clone polybench
       run: git clone git@github.com:phate/polybench-jlm.git
     - name: Compare polybench
