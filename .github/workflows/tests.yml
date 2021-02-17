@@ -23,9 +23,13 @@ jobs:
       run: make check
       env:
         LLVMCONFIG: llvm-config-10
+    - name: Add jlc to PATH
+      run: echo '/home/runner/work/jlm/jlm/bin' >> $GITHUB_PATH
+    - name: Test path
+      run: echo $PATH
+    - name: Test jlc
+      run: which jlc
     - name: Clone polybench
       run: git clone https://github.com/phate/polybench-jlm.git
     - name: Compare polybench
       run: make -C polybench-jlm compare
-      env:
-        PATH: /home/runner/work/jlm/jlm/bin
