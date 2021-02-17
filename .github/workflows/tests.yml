@@ -38,7 +38,7 @@ jobs:
         path: jlm
         key: ${{ runner.os }}-jlm-build
     - name: ls
-      run: ls jlm && ls jlm/jlm && ls jlm/jlm/bin
+      run: ls /home/runner/work/jlm/jlm
     - name: Install dependencies (LLVM)
       run: sudo apt-get install llvm-10-dev clang-10
     - name: Set LLVMCONFIG
