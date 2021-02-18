@@ -46,4 +46,4 @@ jobs:
     - name: Clone polybench
       run: git clone https://github.com/phate/polybench-jlm.git
     - name: Compare polybench
-      run: make -C polybench-jlm compare
+      run: make -C polybench-jlm check
